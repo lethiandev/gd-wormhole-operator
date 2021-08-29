@@ -9,7 +9,7 @@ It's a prototype puzzle/action game consisting only of four levels atm with supp
 <br>Mouse - drag to rotate the gears
 <br>Touch - drag to rotate the gears
 
-# Where to play
+## Where to play
 
 You can use direct link hosted by itch.io -
 <br>https://lethiandev.itch.io/machinery-operator
@@ -17,14 +17,14 @@ You can use direct link hosted by itch.io -
 Alternatively the game is also hosted on GitHub Pages -
 <br>https://lethiandev.github.io/gd-wormhole-operator
 
-# Credits
+## Credits
 Programming and Design - [Konrad Nowakowski](https://github.com/lethiandev) (me)
 <br>Graphics and Sound Effects - [Kenney](https://kenney.nl/)
 <br>Music - [Children's March Theme by Cleyton Kauffman](https://opengameart.org/content/childrens-march-theme)
 
 The game is powered by [Godot Engine v3.4](https://godotengine.org/).
 
-# Screenshots
+## Screenshots
 ![Game Screenshot 1](media/screenshot-1.png)
 ![Game Screenshot 2](media/screenshot-2.png)
 ![Game Screenshot 3](media/screenshot-3.png)
