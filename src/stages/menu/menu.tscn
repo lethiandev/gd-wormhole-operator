@@ -1,0 +1,136 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scripts/interface/fonts/future_narrow_72.font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://stages/industral_01/background_castle.png" type="Texture" id=2]
+[ext_resource path="res://stages/menu/menu.gd" type="Script" id=3]
+[ext_resource path="res://sounds/click_002.ogg" type="AudioStream" id=4]
+[ext_resource path="res://sounds/click_001.ogg" type="AudioStream" id=5]
+[ext_resource path="res://scripts/interface/fonts/future_narrow_64.font.tres" type="DynamicFont" id=6]
+[ext_resource path="res://kenney-logo.png" type="Texture" id=7]
+[ext_resource path="res://scripts/interface/fonts/future_narrow_24.font.tres" type="DynamicFont" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer2"]
+margin_left = 248.0
+margin_top = 55.0
+margin_right = 1031.0
+margin_bottom = 304.0
+custom_fonts/font = ExtResource( 1 )
+text = "Welcome!
+Wormhole Machine
+Operator #008"
+align = 1
+valign = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 433.0
+margin_top = 144.0
+margin_right = 846.0
+margin_bottom = 216.0
+
+[node name="Button" type="ToolButton" parent="CenterContainer/VBoxContainer"]
+margin_right = 413.0
+margin_bottom = 72.0
+custom_colors/font_color_hover = Color( 1, 0.737255, 0, 1 )
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 1 )
+text = "Start Game"
+
+[node name="HoverAudio" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/Button"]
+stream = ExtResource( 4 )
+
+[node name="ClickAudio" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/Button"]
+stream = ExtResource( 5 )
+
+[node name="Control" type="Control" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = -200.0
+margin_right = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 12.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+margin_right = 284.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 8 )
+text = "Game made for Kenney Jam 2021"
+align = 1
+valign = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer"]
+margin_top = 22.0
+margin_right = 284.0
+margin_bottom = 142.0
+rect_min_size = Vector2( 0, 120 )
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer"]
+margin_top = 146.0
+margin_right = 284.0
+margin_bottom = 164.0
+custom_fonts/font = ExtResource( 8 )
+text = "Use only your mouse to play"
+align = 1
+valign = 1
+
+[connection signal="button_down" from="CenterContainer/VBoxContainer/Button" to="CenterContainer/VBoxContainer/Button/ClickAudio" method="play"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/Button" to="CenterContainer/VBoxContainer/Button/HoverAudio" method="play"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_start_pressed"]

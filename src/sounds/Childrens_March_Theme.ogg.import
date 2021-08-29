@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Childrens_March_Theme.ogg-c712fabca7e361de8a14a6da4fe775e4.oggstr"
+
+[deps]
+
+source_file="res://sounds/Childrens_March_Theme.ogg"
+dest_files=[ "res://.import/Childrens_March_Theme.ogg-c712fabca7e361de8a14a6da4fe775e4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

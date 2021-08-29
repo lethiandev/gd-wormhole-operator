@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://stages/industral_01/background_castle.png" type="Texture" id=8]
+[ext_resource path="res://stages/castle_01_stage/castle_01_stage.gd" type="Script" id=9]
+[ext_resource path="res://camera/camera.gd" type="Script" id=10]
+[ext_resource path="res://tiles/tileset.tres" type="TileSet" id=11]
+
+[node name="BaseStage" type="Node"]
+script = ExtResource( 9 )
+
+[node name="InputProxy" type="Node2D" parent="." groups=[
+"input_proxy",
+]]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -100
+follow_viewport_enable = true
+follow_viewport_scale = 0.9
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1024.0
+margin_top = -1024.0
+margin_right = 1024.0
+margin_bottom = 1024.0
+mouse_filter = 2
+texture = ExtResource( 8 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 0.75, 0.75 )
+tile_set = ExtResource( 11 )
+cell_size = Vector2( 140, 140 )
+cell_quadrant_size = 8
+centered_textures = true
+format = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 640, 360 )
+current = true
+script = ExtResource( 10 )
+view_boundary = Vector2( 640, 360 )
+
+[node name="Units" type="Node" parent="."]
+
+[node name="Machinery" type="Node" parent="."]

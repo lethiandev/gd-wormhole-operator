@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://machinery/cog/cog.tscn" type="PackedScene" id=1]
+[ext_resource path="res://machinery/chain/chain.tscn" type="PackedScene" id=2]
+[ext_resource path="res://stages/base_stage/base_stage.tscn" type="PackedScene" id=3]
+[ext_resource path="res://units/enemy/enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://units/portal/portal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://units/canister/canister.tscn" type="PackedScene" id=6]
+[ext_resource path="res://machinery/gate/gate.tscn" type="PackedScene" id=7]
+[ext_resource path="res://units/ally/ally.tscn" type="PackedScene" id=8]
+[ext_resource path="res://stages/base_stage/base_stage.gd" type="Script" id=9]
+[ext_resource path="res://stages/industral_04/industral_04.tscn" type="PackedScene" id=10]
+
+[node name="Industral03Stage" instance=ExtResource( 3 )]
+script = ExtResource( 9 )
+next_level = ExtResource( 10 )
+
+[node name="TileMap" parent="." index="2"]
+tile_data = PoolIntArray( 196610, 1, 65537, 196611, 1, 3, 196612, 1, 131073, 196615, 1, 65539, 196616, 1, 3, 196617, 1, 3, 196618, 1, 3, 196619, 1, 1, 262153, 1, 196610, 262154, 1, 196610, 327682, 1, 131075, 327683, 1, 3, 327684, 1, 131073, 327689, 1, 196610, 327690, 1, 196610, 393219, 1, 196610, 393220, 1, 3, 393221, 1, 3, 393222, 1, 3, 393223, 1, 3, 393224, 1, 3, 393225, 1, 196610, 393226, 1, 196610, 458755, 1, 196610, 458756, 1, 196610, 458757, 1, 196610, 458758, 1, 196610, 458759, 1, 196610, 458760, 1, 196610, 458761, 1, 196610, 458762, 1, 196610, 524291, 1, 196610, 524292, 1, 196610, 524293, 1, 196610, 524294, 1, 196610, 524295, 1, 196610, 524296, 1, 196610, 524297, 1, 196610, 524298, 1, 196610, 589827, 1, 196610, 589828, 1, 196610, 589829, 1, 196610, 589830, 1, 196610, 589831, 1, 196610, 589832, 1, 196610, 589833, 1, 196610, 589834, 1, 196610, 655363, 1, 196610, 655364, 1, 196610, 655365, 1, 196610, 655366, 1, 196610, 655367, 1, 196610, 655368, 1, 196610, 655369, 1, 196610, 655370, 1, 196610 )
+
+[node name="Camera2D" parent="." index="3"]
+position = Vector2( 700, 400 )
+view_boundary = Vector2( 600, 350 )
+
+[node name="Canister" parent="Units" index="0" instance=ExtResource( 6 )]
+position = Vector2( 1127, 253 )
+units_queue = [ ExtResource( 8 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 8 ) ]
+
+[node name="Canister2" parent="Units" index="1" instance=ExtResource( 6 )]
+position = Vector2( 306, 253 )
+units_queue = [ ExtResource( 4 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 8 ) ]
+spawn_direction = 1.0
+
+[node name="Portal" parent="Units" index="2" instance=ExtResource( 5 )]
+position = Vector2( 843, 583 )
+
+[node name="MachineGate" type="Node2D" parent="Machinery" index="0"]
+position = Vector2( 669, 16 )
+
+[node name="Chain" parent="Machinery/MachineGate" index="0" instance=ExtResource( 2 )]
+position = Vector2( -131.873, -2.709 )
+
+[node name="Line2D" parent="Machinery/MachineGate/Chain" index="0"]
+points = PoolVector2Array( -40.127, 140.709, -153.127, 430.709, -176.127, 445.709, -201.127, 441.709, -217.127, 419.709, -215.127, 388.709, -73.127, 126.709 )
+
+[node name="Gate" parent="Machinery/MachineGate" index="1" instance=ExtResource( 7 )]
+position = Vector2( -189, 213 )
+value_max = 720.0
+
+[node name="Cog" parent="Machinery/MachineGate" index="2" instance=ExtResource( 1 )]
+position = Vector2( -313, 406 )
+angle_max = 720.0
+
+[node name="MachineGate2" type="Node2D" parent="Machinery" index="1"]
+position = Vector2( 968, 16 )
+
+[node name="Chain" parent="Machinery/MachineGate2" index="0" instance=ExtResource( 2 )]
+position = Vector2( -131.873, -2.709 )
+
+[node name="Line2D" parent="Machinery/MachineGate2/Chain" index="0"]
+points = PoolVector2Array( -41.127, 127.709, 45.873, 388.709, 50.873, 413.709, 37.873, 437.709, 14.873, 446.709, -9.12701, 441.709, -23.127, 420.709, -71.127, 142.709 )
+
+[node name="Gate" parent="Machinery/MachineGate2" index="1" instance=ExtResource( 7 )]
+position = Vector2( -189, 213 )
+value_max = 720.0
+
+[node name="Cog" parent="Machinery/MachineGate2" index="2" instance=ExtResource( 1 )]
+position = Vector2( -119, 406 )
+angle_max = 720.0
+
+[connection signal="angle_changed" from="Machinery/MachineGate/Cog" to="Machinery/MachineGate/Gate" method="set_value"]
+[connection signal="angle_changed" from="Machinery/MachineGate/Cog" to="Machinery/MachineGate/Chain" method="set_value"]
+[connection signal="angle_changed" from="Machinery/MachineGate2/Cog" to="Machinery/MachineGate2/Gate" method="set_value"]
+[connection signal="angle_changed" from="Machinery/MachineGate2/Cog" to="Machinery/MachineGate2/Chain" method="set_value"]
+
+[editable path="Machinery/MachineGate/Chain"]
+[editable path="Machinery/MachineGate2/Chain"]

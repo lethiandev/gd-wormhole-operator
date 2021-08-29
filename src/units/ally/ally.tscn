@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://units/ally/ally.png" type="Texture" id=1]
+[ext_resource path="res://units/base_unit/base_unit.tscn" type="PackedScene" id=2]
+[ext_resource path="res://units/ally/ally.gd" type="Script" id=3]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+
+[node name="Ally" groups=[
+"ally",
+] instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="Sprite" parent="." index="2"]
+texture = ExtResource( 1 )
+offset = Vector2( 0, -24 )
+
+[node name="AnimationTree" parent="." index="5"]
+parameters/playback = SubResource( 1 )

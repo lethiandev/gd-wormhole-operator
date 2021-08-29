@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://machinery/gate/gate.png" type="Texture" id=1]
+[ext_resource path="res://machinery/gate/gate.gd" type="Script" id=2]
+[ext_resource path="res://machinery/cog/cog.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 18, 96 )
+
+[node name="Gate" type="Node2D"]
+script = ExtResource( 2 )
+lift_height = 120
+
+[node name="CogSprite" type="Sprite" parent="."]
+position = Vector2( 0, -80 )
+scale = Vector2( 0.362924, 0.362924 )
+texture = ExtResource( 3 )
+
+[node name="GateBody" type="KinematicBody2D" parent="."]
+motion/sync_to_physics = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GateBody"]
+shape = SubResource( 1 )
+
+[node name="GateSprite" type="Sprite" parent="GateBody"]
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 1 )

@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://machinery/cog/cog.tscn" type="PackedScene" id=1]
+[ext_resource path="res://machinery/chain/chain.tscn" type="PackedScene" id=2]
+[ext_resource path="res://stages/base_stage/base_stage.tscn" type="PackedScene" id=3]
+[ext_resource path="res://units/enemy/enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://units/portal/portal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://units/canister/canister.tscn" type="PackedScene" id=6]
+[ext_resource path="res://machinery/gate/gate.tscn" type="PackedScene" id=7]
+[ext_resource path="res://units/ally/ally.tscn" type="PackedScene" id=8]
+[ext_resource path="res://stages/base_stage/base_stage.gd" type="Script" id=9]
+[ext_resource path="res://stages/industral_03/industral_03.tscn" type="PackedScene" id=10]
+
+[node name="Industral02Stage" instance=ExtResource( 3 )]
+script = ExtResource( 9 )
+next_level = ExtResource( 10 )
+
+[node name="TileMap" parent="." index="2"]
+tile_data = PoolIntArray( 262140, 1, 65537, 262141, 1, 3, 262142, 1, 3, 262143, 1, 3, 196608, 1, 3, 196609, 1, 131073, 327677, 1, 196610, 327678, 1, 196610, 262153, 1, 131075, 262154, 1, 3, 262155, 1, 3, 262156, 1, 131073, 393213, 1, 196610, 393214, 1, 196610, 327681, 1, 65537, 327682, 1, 3, 327683, 1, 3, 327684, 1, 3, 327685, 1, 3, 327686, 1, 3, 327687, 1, 3, 327690, 1, 196610, 327691, 1, 196610, 458749, 1, 196610, 458750, 1, 196610, 393218, 1, 196610, 393219, 1, 196610, 393220, 1, 196610, 393221, 1, 196610, 393222, 1, 196610, 393223, 1, 196610, 393226, 1, 196610, 393227, 1, 196610, 524285, 1, 196610, 524286, 1, 196610, 458754, 1, 196610, 458755, 1, 196610, 458756, 1, 196610, 458757, 1, 196610, 458758, 1, 196610, 458759, 1, 196610, 458762, 1, 196610, 458763, 1, 196610, 589821, 1, 196610, 589822, 1, 196610, 524290, 1, 196610, 524291, 1, 196610, 524292, 1, 196610, 524293, 1, 196610, 524294, 1, 196610, 524295, 1, 196610, 524298, 1, 196610, 524299, 1, 196610, 655357, 1, 196610, 655358, 1, 196610, 589826, 1, 196610, 589827, 1, 196610, 589828, 1, 196610, 589829, 1, 196610, 589830, 1, 196610, 589831, 1, 196610, 589834, 1, 196610, 589835, 1, 196610, 720893, 1, 196610, 720894, 1, 196610, 655362, 1, 196610, 655363, 1, 196610, 655364, 1, 196610, 655365, 1, 196610, 655366, 1, 196610, 655367, 1, 196610, 655370, 1, 196610, 655371, 1, 196610 )
+
+[node name="Canister" parent="Units" index="0" instance=ExtResource( 6 )]
+position = Vector2( 1184, 360 )
+units_queue = [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 8 ) ]
+
+[node name="Canister2" parent="Units" index="1" instance=ExtResource( 6 )]
+position = Vector2( 98, 252 )
+units_queue = [ ExtResource( 8 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 8 ) ]
+spawn_timer = 4.0
+spawn_direction = 1.0
+
+[node name="Portal" parent="Units" index="2" instance=ExtResource( 5 )]
+position = Vector2( 648, 475 )
+
+[node name="MachineGate" type="Node2D" parent="Machinery" index="0"]
+position = Vector2( 621, 335 )
+
+[node name="Chain" parent="Machinery/MachineGate" index="0" instance=ExtResource( 2 )]
+position = Vector2( -131.873, -2.709 )
+
+[node name="Line2D" parent="Machinery/MachineGate/Chain" index="0"]
+points = PoolVector2Array( -71.127, 19.709, 79.873, -192.291, 107.873, -203.291, 135.873, -191.291, 146.873, -163.291, 134.873, -135.291, -47.127, 46.709 )
+
+[node name="Gate" parent="Machinery/MachineGate" index="1" instance=ExtResource( 7 )]
+position = Vector2( -189, 107 )
+value_max = 720.0
+
+[node name="Cog" parent="Machinery/MachineGate" index="2" instance=ExtResource( 1 )]
+position = Vector2( -23, -166 )
+angle_max = 720.0
+
+[node name="MachinePlatform" type="Node2D" parent="Machinery" index="1"]
+position = Vector2( 876, 444 )
+
+[node name="Chain" parent="Machinery/MachinePlatform" index="0" instance=ExtResource( 2 )]
+position = Vector2( -131.873, -2.709 )
+
+[node name="Line2D" parent="Machinery/MachinePlatform/Chain" index="0"]
+points = PoolVector2Array( 252.873, 112.709, 73.873, -148.291, 70.873, -176.291, 88.873, -197.291, 117.873, -200.291, 141.873, -182.291, 280.873, 93.709 )
+
+[node name="Gate" parent="Machinery/MachinePlatform" index="1" instance=ExtResource( 7 )]
+position = Vector2( 54, 99 )
+rotation = 1.57079
+value_max = 720.0
+
+[node name="Cog" parent="Machinery/MachinePlatform" index="2" instance=ExtResource( 1 )]
+position = Vector2( -23, -166 )
+angle_max = 720.0
+
+[connection signal="angle_changed" from="Machinery/MachineGate/Cog" to="Machinery/MachineGate/Chain" method="set_value"]
+[connection signal="angle_changed" from="Machinery/MachineGate/Cog" to="Machinery/MachineGate/Gate" method="set_value"]
+[connection signal="angle_changed" from="Machinery/MachinePlatform/Cog" to="Machinery/MachinePlatform/Chain" method="set_value"]
+[connection signal="angle_changed" from="Machinery/MachinePlatform/Cog" to="Machinery/MachinePlatform/Gate" method="set_value"]
+
+[editable path="Machinery/MachineGate/Chain"]
+[editable path="Machinery/MachinePlatform/Chain"]

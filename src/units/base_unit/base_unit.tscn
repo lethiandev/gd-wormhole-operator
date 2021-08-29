@@ -1,0 +1,252 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://sounds/impactPlate_medium_000.ogg" type="AudioStream" id=1]
+[ext_resource path="res://units/base_unit/base_unit.gd" type="Script" id=2]
+[ext_resource path="res://sounds/random_sample.gd" type="Script" id=3]
+[ext_resource path="res://sounds/impactPlate_medium_002.ogg" type="AudioStream" id=4]
+[ext_resource path="res://sounds/impactPlate_medium_003.ogg" type="AudioStream" id=5]
+[ext_resource path="res://sounds/impactPlate_medium_004.ogg" type="AudioStream" id=6]
+[ext_resource path="res://sounds/impactPlate_medium_001.ogg" type="AudioStream" id=7]
+[ext_resource path="res://sounds/footstep_concrete_001.ogg" type="AudioStream" id=8]
+[ext_resource path="res://sounds/footstep_concrete_002.ogg" type="AudioStream" id=9]
+[ext_resource path="res://sounds/footstep_concrete_004.ogg" type="AudioStream" id=10]
+[ext_resource path="res://sounds/footstep_concrete_003.ogg" type="AudioStream" id=11]
+[ext_resource path="res://sounds/footstep_concrete_000.ogg" type="AudioStream" id=12]
+
+[sub_resource type="Animation" id=6]
+resource_name = "fall"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "jump"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "walk"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1, 2 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("FootstepsAudio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=20]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.6, 0.6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "teleport"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0.6, 0.6 ), Vector2( 0.1, 1.2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "jump"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "fall"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=9]
+blend_point_0/node = SubResource( 17 )
+blend_point_0/pos = -0.1
+blend_point_1/node = SubResource( 18 )
+blend_point_1/pos = 0.0
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+advance_condition = "is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+advance_condition = "is_airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+advance_condition = "is_airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+advance_condition = "is_grounded"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+advance_condition = "is_standing"
+
+[sub_resource type="AnimationNodeStateMachine" id=7]
+states/airborne/node = SubResource( 9 )
+states/airborne/position = Vector2( 464, 19 )
+states/idle/node = SubResource( 10 )
+states/idle/position = Vector2( 226, 122 )
+states/walk/node = SubResource( 11 )
+states/walk/position = Vector2( 464, 122 )
+transitions = [ "idle", "walk", SubResource( 12 ), "idle", "airborne", SubResource( 13 ), "walk", "airborne", SubResource( 14 ), "airborne", "idle", SubResource( 15 ), "walk", "idle", SubResource( 16 ) ]
+start_node = "idle"
+graph_offset = Vector2( -137, -51 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+
+[node name="BaseUnit" type="KinematicBody2D" groups=[
+"unit",
+]]
+collision_layer = 0
+script = ExtResource( 2 )
+
+[node name="WallImpactAudio" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+volume_db = -14.0
+script = ExtResource( 3 )
+streams = [ ExtResource( 1 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+
+[node name="FootstepsAudio" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+volume_db = -16.0
+script = ExtResource( 3 )
+streams = [ ExtResource( 12 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 10 ) ]
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.6, 0.6 )
+offset = Vector2( 0, -14 )
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 2
+autoplay = "idle"
+anims/fall = SubResource( 6 )
+anims/idle = SubResource( 1 )
+anims/jump = SubResource( 4 )
+anims/walk = SubResource( 3 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+pause_mode = 2
+anims/RESET = SubResource( 20 )
+anims/teleport = SubResource( 19 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+pause_mode = 2
+tree_root = SubResource( 7 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 8 )
+parameters/conditions/is_airborne = false
+parameters/conditions/is_grounded = false
+parameters/conditions/is_standing = false
+parameters/conditions/is_walking = false
+parameters/airborne/blend_position = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -16, 27, -16, -20, 0, -40, 16, -20, 16, 27, 12, 32, -12, 32 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="animation_finished" from="AnimationPlayer2" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timeout"]

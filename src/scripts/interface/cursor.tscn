@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/interface/cursor_default.png" type="Texture" id=1]
+[ext_resource path="res://scripts/interface/cursor.gd" type="Script" id=2]
+[ext_resource path="res://scripts/interface/cursor_pointer.png" type="Texture" id=3]
+
+[node name="Cursor" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CursorDefault" type="TextureRect" parent="."]
+margin_left = -32.0
+margin_top = -22.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.7, 0.7 )
+rect_pivot_offset = Vector2( 32, 22 )
+mouse_filter = 2
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CursorPointer" type="TextureRect" parent="."]
+visible = false
+margin_left = -32.0
+margin_top = -22.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.7, 0.7 )
+rect_pivot_offset = Vector2( 32, 22 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
